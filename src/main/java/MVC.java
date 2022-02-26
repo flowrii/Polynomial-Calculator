@@ -6,7 +6,7 @@ public class MVC {
 
         Model      model      = new Model();
         View       view       = new View(model);
-        //Controller controller = new Controller(model, view);
+        Controller controller = new Controller(model, view);
 
         view.setVisible(true);
     }

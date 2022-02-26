@@ -19,19 +19,19 @@ class View extends JFrame {
 
     View(Model model) {
 
-        m_model = model;
-        m_model.setValue(Model.INITIAL_VALUE);
+        model = model;
+        model.setValue("");
 
-        total.setText(m_model.getValue());
+        total.setText(model.getValue());
         total.setEditable(false);
 
         JPanel content = new JPanel();
         content.setLayout(new FlowLayout());
         Box box1 = Box.createHorizontalBox();
-        box1.add(new JLabel("P1"));
+        box1.add(new JLabel("P1(x)"));
         box1.add(pol1);
         Box box2 = Box.createHorizontalBox();
-        box2.add(new JLabel("P2"));
+        box2.add(new JLabel("P2(x)"));
         box2.add(pol2);
         Box box3 = Box.createVerticalBox();
         box3.add(box1);
@@ -58,7 +58,13 @@ class View extends JFrame {
     }
 
     void reset() {
-        total.setText(Model.INITIAL_VALUE);
+        total.setText("");
+        pol1.setText("");
+        pol2.setText("");
+    }
+
+    void resetTotal() {
+        total.setText("");
     }
 
     String getPol1() {
@@ -77,12 +83,28 @@ class View extends JFrame {
         JOptionPane.showMessageDialog(this, errMessage);
     }
 
-    void addAddListener(ActionListener mal) {
-        addBtn.addActionListener(mal);
+    void addAddListener(ActionListener al) {
+        addBtn.addActionListener(al);
     }
 
-    void addSubListener(ActionListener mal) {
-        subBtn.addActionListener(mal);
+    void subAddListener(ActionListener al) {
+        subBtn.addActionListener(al);
+    }
+
+    void multiplyAddListener(ActionListener al) {
+        multiplyBtn.addActionListener(al);
+    }
+
+    void divSubListener(ActionListener al) {
+        divBtn.addActionListener(al);
+    }
+
+    void derivateAddListener(ActionListener al) {
+        derivateBtn.addActionListener(al);
+    }
+
+    void integrateAddListener(ActionListener al) {
+        integrateBtn.addActionListener(al);
     }
 
     void addClearListener(ActionListener cal) {
