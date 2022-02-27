@@ -12,9 +12,6 @@ public class Polinom {
 
     }
     public Polinom(String string) {
-        /*int ok=1;
-        if(string.charAt(0)=='+' || string.charAt(0)=='-')
-            ok=0;*/
         for (String val : string.split("(?=\\+|-)")) {
             int indexMinus = string.indexOf(val.charAt(0)) - 1; //verific daca coeficientul are semn inaintea lui in string
             if (indexMinus >= 0)

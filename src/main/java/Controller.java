@@ -16,6 +16,7 @@ public class Controller {
         view.addClearListener(new ClearListener());
         view.derivateAddListener(new DerivateListener());
         view.integrateAddListener(new IntegrateListener());
+        view.divAddListener(new DivListener());
     }
 
     public boolean checkStrings(String str1, String str2) {
@@ -36,8 +37,8 @@ public class Controller {
             String str1 = "";
             String str2 = "";
 
-            str1 = view.getPol1().replaceAll("\\s+","");
-            str2 = view.getPol2().replaceAll("\\s+","");
+            str1 = view.getPol1().replaceAll("\\s+", "");
+            str2 = view.getPol2().replaceAll("\\s+", "");
 
             if (checkStrings(str1, str2)) {
                 Polinom pol1 = new Polinom(str1);
@@ -55,8 +56,8 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             String str1 = "";
             String str2 = "";
-            str1 = view.getPol1().replaceAll("\\s+","");
-            str2 = view.getPol2().replaceAll("\\s+","");
+            str1 = view.getPol1().replaceAll("\\s+", "");
+            str2 = view.getPol2().replaceAll("\\s+", "");
 
             if (checkStrings(str1, str2)) {
                 Polinom pol1 = new Polinom(str1);
@@ -75,8 +76,8 @@ public class Controller {
             String str1 = "";
             String str2 = "";
 
-            str1 = view.getPol1().replaceAll("\\s+","");
-            str2 = view.getPol2().replaceAll("\\s+","");
+            str1 = view.getPol1().replaceAll("\\s+", "");
+            str2 = view.getPol2().replaceAll("\\s+", "");
 
             if (checkStrings(str1, str2)) {
                 Polinom pol1 = new Polinom(str1);
@@ -94,9 +95,9 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             String str1 = "";
 
-            str1 = view.getPol1().replaceAll("\\s+","");
-            if(checkStrings(str1, "x")){
-                Polinom pol1=new Polinom(str1);
+            str1 = view.getPol1().replaceAll("\\s+", "");
+            if (checkStrings(str1, "x")) {
+                Polinom pol1 = new Polinom(str1);
 
                 model.reset();
                 model.derivate(pol1);
@@ -110,12 +111,32 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             String str1 = "";
 
-            str1 = view.getPol1().replaceAll("\\s+","");
-            if(checkStrings(str1, "x")){
-                Polinom pol1=new Polinom(str1);
+            str1 = view.getPol1().replaceAll("\\s+", "");
+            if (checkStrings(str1, "x")) {
+                Polinom pol1 = new Polinom(str1);
 
                 model.reset();
                 model.integrate(pol1);
+                view.resetTotal();
+                view.setTotal(model.getValue());
+            }
+        }
+    }
+
+    class DivListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String str1 = "";
+            String str2 = "";
+
+            str1 = view.getPol1().replaceAll("\\s+", "");
+            str2 = view.getPol2().replaceAll("\\s+", "");
+
+            if (checkStrings(str1, str2)) {
+                Polinom pol1 = new Polinom(str1);
+                Polinom pol2 = new Polinom(str2);
+
+                model.reset();
+                model.div(pol1, pol2);
                 view.resetTotal();
                 view.setTotal(model.getValue());
             }
