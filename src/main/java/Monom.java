@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Locale;
 
 public class Monom implements Comparable<Monom> {
@@ -13,37 +14,53 @@ public class Monom implements Comparable<Monom> {
         str = str.toLowerCase();
         if (str.contains("x")) {
             if (!str.contains("*")) {
-                if(str.charAt(0)=='-')
-                    this.coef=-1;
+                if(str.substring(0, str.indexOf("x")).length()>0)
+                    stringToCoef(str.substring(0, str.indexOf("x")));
                 else
-                    this.coef = 1;
+                    this.coef=1;
             } else {
-                if (str.substring(0, 1).equals("+"))          // "+2*x"
-                    this.coef = Integer.valueOf(str.substring(1, str.indexOf("*")));
-                else if (str.substring(0, 1).equals("-"))      // "-3*x"
-                    this.coef = -Integer.valueOf(str.substring(1, str.indexOf("*")));
-                else
-                    this.coef = Integer.valueOf(str.substring(0, str.indexOf("*")));    // "2*x"
+                stringToCoef(str.substring(0, str.indexOf("*")));
             }
             if (!str.contains("^")) {
                 this.grad = 1;
             } else {
-                this.grad = Character.getNumericValue(str.charAt(str.indexOf("^") + 1));
+                    stringToGrad(str.substring(str.indexOf("^") + 1));
             }
         } else {
             this.grad = 0;
-            if (str.length() == 1)
-                this.coef = Integer.valueOf(str);
-            else switch (str.substring(0, 1)) {
-                case "-":
+            this.coef = Integer.valueOf(str);
+        }
+    }
+
+    public void stringToGrad(String str){
+        try {
+            this.grad = Integer.valueOf(str);
+        }
+        catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(new View(new Model()),"Polinom invalid!");
+        }
+    }
+
+    public void stringToCoef(String str){
+        try {
+            if (str.length() == 1) {
+                if (str.charAt(0) == '-')
+                    this.coef = -1;
+                else if (str.charAt(0) == '+')
+                    this.coef = 1;
+                else
                     this.coef = Integer.valueOf(str);
-                    break;
-                case "+":
+            } else {
+                if (str.charAt(0)=='+')             // "+2*x"
                     this.coef = Integer.valueOf(str.substring(1));
-                    break;
-                default:
+                else if (str.charAt(0) == '-')      // "-3*x"*/
+                    this.coef = -Integer.valueOf(str.substring(1));
+                else                                // "2*x"
                     this.coef = Integer.valueOf(str);
             }
+        }
+        catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(new View(new Model()),"Polinom invalid!");
         }
     }
 

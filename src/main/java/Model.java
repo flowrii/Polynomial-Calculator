@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.math.BigInteger;
 import java.util.Collections;
 
@@ -88,6 +89,7 @@ public class Model {
 
         Polinom rezFinal = new Polinom();
         rezFinal = add(rez, new Polinom("0"));
+        eliminaZerouri(rezFinal);
         this.reset();
         rezFinal.getPolinom().forEach(mo -> {
             total += mo.toString();
@@ -109,6 +111,7 @@ public class Model {
         rez.getPolinom().forEach(mo -> {
             total += mo.toString();
         });
+
         return rez;
     }
 
@@ -132,26 +135,29 @@ public class Model {
 
         Polinom rez = new Polinom();
 
-        Collections.sort(p1.getPolinom());
-        Collections.sort(p2.getPolinom());
+        Collections.sort(deimpartit.getPolinom());  eliminaZerouri(deimpartit);
+        Collections.sort(impartitor.getPolinom());  eliminaZerouri(impartitor);
 
-        while (deimpartit.getPolinom().get(0).getGrad() >= impartitor.getPolinom().get(0).getGrad()) {
-            //impart primul monom din deimpartit la primul din impartitor si il adaug la rezultat
-            Monom partial = new Monom(deimpartit.getPolinom().get(0).getGrad() - impartitor.getPolinom().get(0).getGrad(), deimpartit.getPolinom().get(0).getCoef() / impartitor.getPolinom().get(0).getCoef());
-            rez.getPolinom().add(partial);
-            //tin minte monomul rezultat intr-un polinom pentru a-l putea folosi la calcule mai departe
-            Polinom rezPartial = new Polinom();
-            rezPartial.getPolinom().add(partial);
+        if(impartitor.getPolinom().get(0).getCoef()==0)
+            JOptionPane.showMessageDialog(new View(new Model()),"Impartire la 0!");
+        else {
+            while (deimpartit.getPolinom().get(0).getGrad() >= impartitor.getPolinom().get(0).getGrad() && deimpartit.getPolinom().get(0).getCoef() != 0) {
+                //impart primul monom din deimpartit la primul din impartitor si il adaug la rezultat
+                Monom partial = new Monom(deimpartit.getPolinom().get(0).getGrad() - impartitor.getPolinom().get(0).getGrad(), deimpartit.getPolinom().get(0).getCoef() / impartitor.getPolinom().get(0).getCoef());
+                rez.getPolinom().add(partial);
+                //tin minte monomul rezultat intr-un polinom pentru a-l putea folosi la calcule mai departe
+                Polinom rezPartial = new Polinom();
+                rezPartial.getPolinom().add(partial);
 
-            //inmultesc rezultatul impartirii cu impartitorul
-            this.reset();
-            Polinom inmultire = mul(rezPartial, impartitor);
+                //inmultesc rezultatul impartirii cu impartitorul
+                this.reset();
+                Polinom inmultire = mul(rezPartial, impartitor);
 
-            //scad rezultatul inmultirii din actualul deimpartit, totalul fiind noul deimpartit
-            this.reset();
-            deimpartit = substract(deimpartit, inmultire);
+                //scad rezultatul inmultirii din actualul deimpartit, totalul fiind noul deimpartit
+                this.reset();
+                deimpartit = substract(deimpartit, inmultire);
+            }
         }
-
         this.reset();
         rez.getPolinom().forEach(mo -> {
             total += mo.toString();
@@ -165,11 +171,23 @@ public class Model {
         return rez;
     }
 
+    public void eliminaZerouri(Polinom p){
+        for(int i=0; i<p.getPolinom().size();i++)
+        {
+            if(p.getPolinom().get(i).getCoef()==0)
+                p.getPolinom().remove(p.getPolinom().get(i));
+        }
+        if(p.getPolinom().size()==0)
+            p.getPolinom().add(new Monom(0,0));
+    }
+
     public void setValue(String value) {
         total = new String(value);
     }
 
     public String getValue() {
+        if(total.equals(""))
+            total+="0";
         return total;
     }
 }
