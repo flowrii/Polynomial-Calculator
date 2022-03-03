@@ -6,7 +6,7 @@ class View extends JFrame {
 
     private JTextField pol1 = new JTextField(20);
     private JTextField pol2 = new JTextField(20);
-    private JTextField total = new JTextField(50);
+    private JTextArea total = new JTextArea(1,50);
     private JButton addBtn = new JButton("       Add        ");
     private JButton clearBtn = new JButton("Clear");
     private JButton subBtn = new JButton("  Substract  ");
@@ -23,6 +23,8 @@ class View extends JFrame {
         model.setValue("");
 
         total.setText(model.getValue());
+        total.setLineWrap(true);
+        total.setWrapStyleWord(true);
         total.setEditable(false);
 
         JPanel content = new JPanel();

@@ -6,47 +6,47 @@ public class IntegrateTest {
 
     @Test
     public void test1() {
-        String strP1 = "7";
+        String strP1 = "0";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
         model.integrate(p1);
-        assertEquals("0", model.getValue());
+        assertEquals("Const", model.getValue());
     }
 
     @Test
     public void test2() {
-        String strP1 = "x";
+        String strP1 = "5";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
         model.integrate(p1);
-        assertEquals("+1.0", model.getValue());
+        assertEquals("+5.0*x", model.getValue());
     }
 
     @Test
     public void test3() {
-        String strP1 = "4*x^7";
+        String strP1 = "-1";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
         model.integrate(p1);
-        assertEquals("+28.0*x^6", model.getValue());
+        assertEquals("-x", model.getValue());
     }
 
     @Test
     public void test4() {
-        String strP1 = "9x^5+6x^4+10x^2+4";
+        String strP1 = "5x^4+4x^3+2x+4";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
         model.integrate(p1);
-        assertEquals("+45.0*x^4+24.0*x^3+20.0*x", model.getValue());
+        assertEquals("+x^5+x^4+x^2+4.0*x", model.getValue());
     }
 
     @Test
     public void test5() {
-        String strP1 = "100*x^11-4*x^2+2*x-12";
+        String strP1 = "9x^11+6x^4-8x^3-13";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
         model.integrate(p1);
-        assertEquals("+1100.0*x^10-8.0*x+2.0", model.getValue());
+        assertEquals("+0.75*x^12+1.2*x^5-2.0*x^4-13.0*x", model.getValue());
     }
 
 }

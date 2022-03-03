@@ -147,8 +147,9 @@ public class Model {
         Collections.sort(impartitor.getPolinom());
         eliminaZerouri(impartitor);
 
-        if (impartitor.getPolinom().get(0).getCoef() == 0)
-            JOptionPane.showMessageDialog(new View(new Model()), "Impartire la 0!");
+        if (impartitor.getPolinom().get(0).getCoef() == 0) {
+            total+="Impartire la 0!";
+        }
         else {
             while (deimpartit.getPolinom().get(0).getGrad() >= impartitor.getPolinom().get(0).getGrad() && deimpartit.getPolinom().get(0).getCoef() != 0) {
                 //impart primul monom din deimpartit la primul din impartitor si il adaug la rezultat
@@ -166,17 +167,17 @@ public class Model {
                 this.reset();
                 deimpartit = substract(deimpartit, inmultire);
             }
-        }
-        this.reset();
-        rez.getPolinom().forEach(mo -> {
-            total += mo.toString();
-        });
-        eliminaZerouri(deimpartit);
-        if (deimpartit.getPolinom().size() > 0 && deimpartit.getPolinom().get(0).getCoef()!=0) {
-            total += "  REST:";
-            deimpartit.getPolinom().forEach(mo -> {
+            this.reset();
+            rez.getPolinom().forEach(mo -> {
                 total += mo.toString();
             });
+            eliminaZerouri(deimpartit);
+            if (deimpartit.getPolinom().size() > 0 && deimpartit.getPolinom().get(0).getCoef() != 0) {
+                total += "  REST:";
+                deimpartit.getPolinom().forEach(mo -> {
+                    total += mo.toString();
+                });
+            }
         }
         return rez;
     }
