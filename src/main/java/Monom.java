@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class Monom implements Comparable<Monom> {

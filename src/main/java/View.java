@@ -6,14 +6,14 @@ class View extends JFrame {
 
     private JTextField pol1 = new JTextField(20);
     private JTextField pol2 = new JTextField(20);
-    private JTextField total = new JTextField(40);
+    private JTextField total = new JTextField(50);
     private JButton addBtn = new JButton("       Add        ");
     private JButton clearBtn = new JButton("Clear");
     private JButton subBtn = new JButton("  Substract  ");
     private JButton multiplyBtn = new JButton("    Multiply    ");
-    private JButton divBtn=new JButton("         Div        ");
-    private JButton derivateBtn=new JButton("Derivate P1 ");
-    private JButton integrateBtn=new JButton("Integrate P1");
+    private JButton divBtn = new JButton("         Div        ");
+    private JButton derivateBtn = new JButton("Derivate P1 ");
+    private JButton integrateBtn = new JButton("Integrate P1");
 
     private Model m_model;
 

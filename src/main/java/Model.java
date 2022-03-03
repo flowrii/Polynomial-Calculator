@@ -118,14 +118,21 @@ public class Model {
     public Polinom integrate(Polinom p1) {
         Polinom rez = new Polinom();
 
-        p1.getPolinom().forEach(m -> {
-            Monom partial = new Monom(m.getGrad() + 1, m.getCoef() / (m.getGrad() + 1));
+        eliminaZerouri(p1);
 
-            rez.getPolinom().add(partial);
-        });
-        rez.getPolinom().forEach(mo -> {
-            total += mo.toString();
-        });
+        if (p1.getPolinom().get(0).getCoef() == 0) {
+            this.reset();
+            total += "Const";
+        } else {
+            p1.getPolinom().forEach(m -> {
+                Monom partial = new Monom(m.getGrad() + 1, m.getCoef() / (m.getGrad() + 1));
+
+                rez.getPolinom().add(partial);
+            });
+            rez.getPolinom().forEach(mo -> {
+                total += mo.toString();
+            });
+        }
         return rez;
     }
 
@@ -135,11 +142,13 @@ public class Model {
 
         Polinom rez = new Polinom();
 
-        Collections.sort(deimpartit.getPolinom());  eliminaZerouri(deimpartit);
-        Collections.sort(impartitor.getPolinom());  eliminaZerouri(impartitor);
+        Collections.sort(deimpartit.getPolinom());
+        eliminaZerouri(deimpartit);
+        Collections.sort(impartitor.getPolinom());
+        eliminaZerouri(impartitor);
 
-        if(impartitor.getPolinom().get(0).getCoef()==0)
-            JOptionPane.showMessageDialog(new View(new Model()),"Impartire la 0!");
+        if (impartitor.getPolinom().get(0).getCoef() == 0)
+            JOptionPane.showMessageDialog(new View(new Model()), "Impartire la 0!");
         else {
             while (deimpartit.getPolinom().get(0).getGrad() >= impartitor.getPolinom().get(0).getGrad() && deimpartit.getPolinom().get(0).getCoef() != 0) {
                 //impart primul monom din deimpartit la primul din impartitor si il adaug la rezultat
@@ -162,8 +171,9 @@ public class Model {
         rez.getPolinom().forEach(mo -> {
             total += mo.toString();
         });
-        if (deimpartit.getPolinom().size() > 0) {
-            total +="  REST:";
+        eliminaZerouri(deimpartit);
+        if (deimpartit.getPolinom().size() > 0 && deimpartit.getPolinom().get(0).getCoef()!=0) {
+            total += "  REST:";
             deimpartit.getPolinom().forEach(mo -> {
                 total += mo.toString();
             });
@@ -171,14 +181,15 @@ public class Model {
         return rez;
     }
 
-    public void eliminaZerouri(Polinom p){
-        for(int i=0; i<p.getPolinom().size();i++)
-        {
-            if(p.getPolinom().get(i).getCoef()==0)
+    public void eliminaZerouri(Polinom p) {
+        for (int i = 0; i < p.getPolinom().size(); ) {
+            if (p.getPolinom().get(i).getCoef() == 0)
                 p.getPolinom().remove(p.getPolinom().get(i));
+            else
+                i++;
         }
-        if(p.getPolinom().size()==0)
-            p.getPolinom().add(new Monom(0,0));
+        if (p.getPolinom().size() == 0)
+            p.getPolinom().add(new Monom(0, 0));
     }
 
     public void setValue(String value) {
@@ -186,8 +197,8 @@ public class Model {
     }
 
     public String getValue() {
-        if(total.equals(""))
-            total+="0";
+        if (total.equals(""))
+            total += "0";
         return total;
     }
 }
