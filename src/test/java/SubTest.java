@@ -11,7 +11,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("+18.0", model.getValue());
     }
 
@@ -22,7 +22,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("+2.0*x+11.0", model.getValue());
     }
 
@@ -33,7 +33,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("-16.0", model.getValue());
     }
 
@@ -44,7 +44,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("-x^2+2.0*x+11.0", model.getValue());
     }
 
@@ -55,7 +55,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("+x^11+3.0*x^2+2.0*x+23.0", model.getValue());
     }
 
@@ -66,7 +66,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("+4.0*x+11.0", model.getValue());
     }
 
@@ -77,7 +77,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("0", model.getValue());
     }
 
@@ -88,7 +88,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("0", model.getValue());
     }
 
@@ -99,7 +99,7 @@ public class SubTest {
         Polinom p1 = new Polinom(strP1);
         Polinom p2 = new Polinom(strP2);
         Model model = new Model();
-        model.substract(p1, p2);
+        model.subtract(p1, p2);
         assertEquals("-100.0*x^11-2.0*x+12.0", model.getValue());
     }
 }

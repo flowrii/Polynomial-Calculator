@@ -9,7 +9,7 @@ class View extends JFrame {
     private JTextArea total = new JTextArea(1,50);
     private JButton addBtn = new JButton("       Add        ");
     private JButton clearBtn = new JButton("Clear");
-    private JButton subBtn = new JButton("  Substract  ");
+    private JButton subBtn = new JButton("    Subtract  ");
     private JButton multiplyBtn = new JButton("    Multiply    ");
     private JButton divBtn = new JButton("         Div        ");
     private JButton derivateBtn = new JButton("Derivate P1 ");

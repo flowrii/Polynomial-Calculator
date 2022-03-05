@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.event.*;
 
 public class Controller {
@@ -11,7 +10,7 @@ public class Controller {
         this.view = view;
 
         view.addAddListener(new AddListener());
-        view.subAddListener(new SubstractListener());
+        view.subAddListener(new SubtractListener());
         view.multiplyAddListener(new MultiplyListener());
         view.addClearListener(new ClearListener());
         view.derivateAddListener(new DerivateListener());
@@ -52,7 +51,7 @@ public class Controller {
         }
     }
 
-    class SubstractListener implements ActionListener {
+    class SubtractListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String str1 = "";
             String str2 = "";
@@ -64,7 +63,7 @@ public class Controller {
                 Polinom pol2 = new Polinom(str2);
 
                 model.reset();
-                model.substract(pol1, pol2);
+                model.subtract(pol1, pol2);
                 view.resetTotal();
                 view.setTotal(model.getValue());
             }

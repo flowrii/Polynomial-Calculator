@@ -29,7 +29,7 @@ public class Monom implements Comparable<Monom> {
             }
         } else {
             this.grad = 0;
-            this.coef = Integer.valueOf(str);
+            stringToCoef(str);
         }
     }
 
@@ -38,7 +38,7 @@ public class Monom implements Comparable<Monom> {
             this.grad = Integer.valueOf(str);
         }
         catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(new View(new Model()),"Polinom invalid!");
+            JOptionPane.showMessageDialog(null,"Polinom invalid!");
         }
     }
 
@@ -61,7 +61,7 @@ public class Monom implements Comparable<Monom> {
             }
         }
         catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(new View(new Model()),"Polinom invalid!");
+            JOptionPane.showMessageDialog(null,"Polinom invalid!");
         }
     }
 

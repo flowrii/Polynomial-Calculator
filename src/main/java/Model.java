@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.math.BigInteger;
 import java.util.Collections;
 
 public class Model {
@@ -45,7 +43,7 @@ public class Model {
         return rez;
     }
 
-    public Polinom substract(Polinom p1, Polinom p2) {
+    public Polinom subtract(Polinom p1, Polinom p2) {
         Polinom rez = new Polinom();
 
         p1.getPolinom().forEach((m1) -> {
@@ -87,7 +85,7 @@ public class Model {
             });
         });
 
-        Polinom rezFinal = new Polinom();
+        Polinom rezFinal;
         rezFinal = add(rez, new Polinom("0"));
         eliminaZerouri(rezFinal);
         this.reset();
@@ -165,9 +163,10 @@ public class Model {
 
                 //scad rezultatul inmultirii din actualul deimpartit, totalul fiind noul deimpartit
                 this.reset();
-                deimpartit = substract(deimpartit, inmultire);
+                deimpartit = subtract(deimpartit, inmultire);
             }
             this.reset();
+            rez=add(rez,new Polinom("0")); this.reset();
             rez.getPolinom().forEach(mo -> {
                 total += mo.toString();
             });
@@ -194,7 +193,7 @@ public class Model {
     }
 
     public void setValue(String value) {
-        total = new String(value);
+        total = value;
     }
 
     public String getValue() {
