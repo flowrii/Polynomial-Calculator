@@ -33,6 +33,15 @@ public class IntegrateTest {
 
     @Test
     public void test4() {
+        String strP1 = "2x";
+        Polinom p1 = new Polinom(strP1);
+        Model model = new Model();
+        model.integrate(p1);
+        assertEquals("+x^2", model.getValue());
+    }
+
+    @Test
+    public void test5() {
         String strP1 = "5x^4+4x^3+2x+4";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
@@ -41,7 +50,7 @@ public class IntegrateTest {
     }
 
     @Test
-    public void test5() {
+    public void test6() {
         String strP1 = "9x^11+6x^4-8x^3-13";
         Polinom p1 = new Polinom(strP1);
         Model model = new Model();
